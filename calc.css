@@ -1,0 +1,6 @@
+
+/* star means that style has to be used for html elements */
+* {margin: 7; padding: 10;}
+
+/* for html, body  set width, height and background color */
+html, body {width: 100%; height: 100%; background-color: #00A050; }

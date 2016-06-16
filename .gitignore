@@ -1,5 +1,5 @@
-# ignore folder logs
+# ignore folder logs and docs
 logs/
 
-# ignore txt-files
-docs/*.txt
+# ignore html-files
+docs/*.html
