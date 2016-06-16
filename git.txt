@@ -1,0 +1,40 @@
+
+ - HELP of Git, for example "log"
+git help log
+
+ - SHOW status of the repo
+git status
+
+ - INDEX all files for Git
+git add .
+
+ - INDEX all files with expansion "*.html" for Git
+git add "*.html"
+
+ - INDEX FILE_NAME for Git
+git add FILE_NAME
+
+ - REMOVE from Git
+git rm --cached FILE_NAME
+
+ - INDEX and COMMIT files in one command. "init" - comment of the first version
+git commit -a -m"init"
+
+ - create IGNORE FILE in repo folder
+.gitignore
+
+ - CHECKOUT file
+git checkout -- FILE_NAME
+
+ - show HISTORY of the repo
+git log
+
+ - show HISTORY of the repo if format: "GUID; author; time; comment"
+git log --pretty=format:"%h - %an, %ar : %s"
+
+ - show HISTORY of the repo for last two weeks
+git log --since=2.weeks
+
+ - show HISTORY of the repo 
+git log -p -2
+
