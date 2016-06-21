@@ -1,38 +1,72 @@
+<!DOCTYPE html>
+
 <html>
 	<head>
-		<script language="javascript" src='calc.js' > </script>
+        <meta charset="utf-8" />
+		<title>Calc...</title>
+
 		<link rel='StyleSheet' type='text/css' href='calc.css' /> 
+
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+		<script language="javascript" src='calc.js' > </script>
+
 	</head>
 	
 	<body>
-		<div id='form_A'> 
-		<form name="calculator">
-
-			<input type="field" name="display" value="0" width=20 align="right">
-
-			<br>
-				<input type="button" name="7" value="7" onClick="digit(7)">
-				<input type="button" name="8" value="8" onClick="digit(8)">
-				<input type="button" name="9" value="9" onClick="digit(9)">
-			<br>
-				<input type="button" name="4" value="4" onClick="digit(4)">
-				<input type="button" name="5" value="5" onClick="digit(5)">
-				<input type="button" name="6" value="6" onClick="digit(6)">
-			<br>
-				<input type="button" name="1" value="1" onClick="digit(1)">
-				<input type="button" name="2" value="2" onClick="digit(2)">
-				<input type="button" name="3" value="3" onClick="digit(3)">
-			<br>
-				<input type="button" name="0" value="0" onClick="digit(0)">
-				<input type="button" name="C" value="C" onClick="clearDisplay()">
-				<input type="button" name="=" value="=" onClick="doOp('=')">
-			<br>
-				<input type="button" name="+" value="+" onClick="doOp('+')">
-				<input type="button" name="-" value="-" onClick="doOp('-')">
-				<input type="button" name="*" value="*" onClick="doOp('*')">
-				<input type="button" name="/" value="/" onClick="doOp('/')">
-
-		</form>
+		<div ng-app="calcApp" ng-controller="CalcCtrl"> 
+			<table>
+				<tr>
+					<td>
+						<input type="text" readonly ng-model="display" />
+					</td>
+				</tr>
+				<tr>
+                    <td>
+					<center>
+						<input type="button" name="7" value="7" ng-click="digit('7')">
+						<input type="button" name="8" value="8" ng-click="digit('8')">
+						<input type="button" name="9" value="9" ng-click="digit('9')">
+					</center>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+					<center>
+						<input type="button" name="4" value="4" ng-click="digit('4')">
+						<input type="button" name="5" value="5" ng-click="digit('5')">
+						<input type="button" name="6" value="6" ng-click="digit('6')">
+					</center>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+					<center>
+						<input type="button" name="1" value="1" ng-click="digit('1')">
+						<input type="button" name="2" value="2" ng-click="digit('2')">
+						<input type="button" name="3" value="3" ng-click="digit('3')">
+					</center>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+					<center>
+						<input type="button" name="0" value="0" ng-click="digit('0')">
+						<input type="button" name="C" value="C" ng-click="clearDisplay()">
+						<input type="button" name="=" value="=" ng-click="doOp('=')">
+					</center>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+					<center>
+						<input type="button" name="+" value="+" ng-click="doOp('+')">
+						<input type="button" name="-" value="-" ng-click="doOp('-')">
+						<input type="button" name="*" value="*" ng-click="doOp('*')">
+						<input type="button" name="/" value="/" ng-click="doOp('/')">
+					</center>
+                    </td>
+                </tr>
+            </table>
 		</div> 
 	</body>
 </html>
