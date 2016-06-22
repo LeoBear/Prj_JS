@@ -27,7 +27,7 @@ calcModel.controller("CalcCtrl", function ($scope) {
 
 	//   Executes the *previous* operation (e.g., when the user types
 	//   2 + 4 - 2, when the "-" is clicked, the "+" should be executed).
-	$scope.doOp = function( newOperation )
+	$scope.doOperation = function( newOperation )
 	{
 		// Get the argument
 		var newArg = eval( $scope.display );
@@ -58,7 +58,7 @@ calcModel.controller("CalcCtrl", function ($scope) {
 	}
 	
 	// --- Reacts to the user typing a digit --- //
-	$scope.digit = function ( dig )
+	$scope.setDigit = function ( dig )
 	{
 		if( $scope.appendDigits ) {
 			$scope.display += dig;
