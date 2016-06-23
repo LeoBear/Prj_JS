@@ -1,7 +1,34 @@
-var calcModel = angular.module("calcApp", []);
 
-calcModel.controller("CalcCtrl", function ($scope) {
-	
+// Create model of calc metadata.
+var modelCalcVersions = {
+	user: "Home&Student",
+	operations: [
+		{ name: "+", operation: "'+'", method: "doOperation('+')" },
+		{ name: "-", operation: "'-'", method: "doOperation('-')" },
+		{ name: "*", operation: "'*'", method: "doOperation('*')" },
+		{ name: "/", operation: "'/'", method: "doOperation('/')" }
+	]
+};
+
+// Create model of numbers.
+var modelDigit = {
+	digits: [
+		{ dig: "1"}, { dig: "2"}, { dig: "3"},
+		{ dig: "4"}, { dig: "5"}, { dig: "6"},
+		{ dig: "7"}, { dig: "8"}, { dig: "9"},
+	]
+};
+
+// Create AngularJS "module" for calc.
+var calcModule = angular.module("calcApp", []);
+
+// Create AngularJS "controller" for calc module.
+calcModule.controller("CalcCtrl", function ($scope) {
+		
+	// Models of the calculator
+	$scope.modelCalcVersions = modelCalcVersions;
+	$scope.modelDigit        = modelDigit;
+
 	// Input data and result of calculation
 	$scope.display = '';
 
@@ -56,7 +83,7 @@ calcModel.controller("CalcCtrl", function ($scope) {
 		$scope.appendDigits = false;
 		$scope.op = newOperation;
 	}
-	
+
 	// --- Reacts to the user typing a digit --- //
 	$scope.setDigit = function ( dig )
 	{

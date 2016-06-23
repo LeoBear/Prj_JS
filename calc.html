@@ -17,20 +17,26 @@
 			<table>
 				<tr>
 					<td>
-						<input type="text" readonly ng-model="display" />
+						version: {{modelCalcVersions.user}}; <br>
+						operations: {{modelCalcVersions.operations.length}}
 					</td>
 				</tr>
 				<tr>
 					<td>
 					<center>
-<!-- 						<input type="button" name="7" value="7" ng-click="setDigit('7')"> -->
- 						<button ng-click="setDigit('7')">7</button>
-						<button ng-click="setDigit('8')">8</button>
-						<button ng-click="setDigit('9')">9</button>
+						<input type="text" readonly ng-model="display" />
 					</center>
 					</td>
 				</tr>
-				<tr>
+				<tr ng-repeat="digit in modelDigit.digits" >
+					<td>
+					<center>
+ 						<button ng-click="setDigit($index)">{{$index}}</button>
+					</center>
+					</td>
+				</tr>
+<!--
+ 				<tr>
 					<td>
 					<center>
 						<button ng-click="setDigit('4')">4</button>
@@ -48,6 +54,7 @@
 					</center>
 					</td>
 				</tr>
+ -->
 				<tr>
 					<td>
 					<center>
@@ -64,6 +71,17 @@
 						<button ng-click="doOperation('-')">-</button>
 						<button ng-click="doOperation('*')">*</button>
 						<button ng-click="doOperation('/')">/</button>
+<!--
+						<button ng-repeat="i in modelCalcVersions.operations" ng-click="doOperation(i)">{{i.name}}</button>
+ -->
+<!--
+						<span ng-repeat="i in modelCalcVersions.operations">
+							<button ng-click="{{i.method}}">{{i.name}}</button>
+						</span>
+ -->
+<!--
+						<button ng-repeat="i in modelCalcVersions.operations" ng-click="{{i.method}}">{{i.name}}</button>
+ -->
 					</center>
 					</td>
 				</tr>
