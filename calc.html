@@ -28,33 +28,15 @@
 					</center>
 					</td>
 				</tr>
-				<tr ng-repeat="digit in modelDigit.digits" >
+				<tr ng-repeat="digit in modelDigit.digits | filter:getFiltered">
 					<td>
 					<center>
- 						<button ng-click="setDigit($index)">{{$index}}</button>
+ 						<button ng-click="setDigit(digit.dig)">{{digit.dig}}</button>
+ 						<button ng-click="setDigit(modelDigit.digits[digit._index+1].dig)">{{modelDigit.digits[digit._index+1].dig}}</button>
+ 						<button ng-click="setDigit(modelDigit.digits[digit._index+2].dig)">{{modelDigit.digits[digit._index+2].dig}}</button>
 					</center>
 					</td>
 				</tr>
-<!--
- 				<tr>
-					<td>
-					<center>
-						<button ng-click="setDigit('4')">4</button>
-						<button ng-click="setDigit('5')">5</button>
-						<button ng-click="setDigit('6')">6</button>
-					</center>
-					</td>
-				</tr>
-				<tr>
-					<td>
-					<center>
-						<button ng-click="setDigit('1')">1</button>
-						<button ng-click="setDigit('2')">2</button>
-						<button ng-click="setDigit('3')">3</button>
-					</center>
-					</td>
-				</tr>
- -->
 				<tr>
 					<td>
 					<center>

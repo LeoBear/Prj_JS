@@ -1,5 +1,5 @@
 
-// Create model of calc metadata.
+// --- Create model of calc metadata.
 var modelCalcVersions = {
 	user: "Home&Student",
 	operations: [
@@ -10,7 +10,7 @@ var modelCalcVersions = {
 	]
 };
 
-// Create model of numbers.
+// --- Create model of numbers.
 var modelDigit = {
 	digits: [
 		{ dig: "1"}, { dig: "2"}, { dig: "3"},
@@ -19,10 +19,12 @@ var modelDigit = {
 	]
 };
 
-// Create AngularJS "module" for calc.
+/*-------------------------------------------------------------------*/
+
+// --- Create AngularJS "module" for calc.
 var calcModule = angular.module("calcApp", []);
 
-// Create AngularJS "controller" for calc module.
+// --- Create AngularJS "controller" for calc module.
 calcModule.controller("CalcCtrl", function ($scope) {
 		
 	// Models of the calculator
@@ -32,6 +34,12 @@ calcModule.controller("CalcCtrl", function ($scope) {
 	// Input data and result of calculation
 	$scope.display = '';
 
+	$scope.getFiltered= function(obj, idx){
+        obj._index = idx;
+		var rest = !(obj._index % 3 );
+        return rest;
+    }
+	
 	// Should we append digits to the display?  It depends on whether
 	// we've just hit an operation button or a number button.  This
 	// variable keeps track of what we're supposed to do.
