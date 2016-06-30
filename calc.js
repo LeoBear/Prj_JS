@@ -41,6 +41,27 @@ calcModule.factory('serviceCalcDigits', function() {
 });
 /*___________________________________________________________________*/
 
+// --- Create service with operations.
+calcModule.service('serviceCalc', function(){
+
+	this.add = function(a, b){
+		return a + b;
+	};
+    
+	this.subtract = function(a, b){
+		return a - b;
+	};
+    
+	this.multiply = function(a, b){
+		return a * b;
+	};
+    
+	this.divide = function(a, b){
+		return a / b;
+	};
+});
+/*___________________________________________________________________*/
+
 // --- Create AngularJS "controller" for calc module.
 calcModule.controller("CalcCtrl", function ($scope, serviceCalc, serviceCalcVersions, serviceCalcDigits) {
 		
@@ -120,25 +141,5 @@ calcModule.controller("CalcCtrl", function ($scope, serviceCalc, serviceCalcVers
 			$scope.appendDigits = true;
 		}
 	}	
-});
-/*___________________________________________________________________*/
-
-calcModule.service('serviceCalc', function(){
-
-	this.add = function(a, b){
-		return a + b;
-	};
-    
-	this.subtract = function(a, b){
-		return a - b;
-	};
-    
-	this.multiply = function(a, b){
-		return a * b;
-	};
-    
-	this.divide = function(a, b){
-		return a / b;
-	};
 });
 /*___________________________________________________________________*/
