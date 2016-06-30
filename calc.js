@@ -1,44 +1,52 @@
 
 /*_____________________________________________________________________
 calc.js :
- - additional models;
  - module of calculator;
+ - additional models/factories;
  - controller of calculator;
  - service;
 _____________________________________________________________________*/
-
-// --- Create model of calc metadata.
-var modelCalcVersions = {
-	user: "Home&Student",
-	operations: [
-		{ name: "+", operation: "'+'", method: "doOperation('+')" },
-		{ name: "-", operation: "'-'", method: "doOperation('-')" },
-		{ name: "*", operation: "'*'", method: "doOperation('*')" },
-		{ name: "/", operation: "'/'", method: "doOperation('/')" }
-	]
-};
-/*___________________________________________________________________*/
-
-// --- Create model of numbers.
-var modelDigit = {
-	digits: [
-		{ dig: "1"}, { dig: "2"}, { dig: "3"},
-		{ dig: "4"}, { dig: "5"}, { dig: "6"},
-		{ dig: "7"}, { dig: "8"}, { dig: "9"},
-	]
-};
-/*___________________________________________________________________*/
 
 // --- Create AngularJS "module" for calc.
 var calcModule = angular.module("calcApp", []);
 /*___________________________________________________________________*/
 
+// --- Create model of calc metadata.
+calcModule.factory('serviceCalcVersions', function() {
+	return{
+		modelCalcVersions : {
+			user: "Home&Student",
+			operations: [
+				{ name: "+", operation: "'+'", method: "doOperation('+')" },
+				{ name: "-", operation: "'-'", method: "doOperation('-')" },
+				{ name: "*", operation: "'*'", method: "doOperation('*')" },
+				{ name: "/", operation: "'/'", method: "doOperation('/')" }
+			]
+		}
+	};
+});
+/*___________________________________________________________________*/
+
+// --- Create model of numbers.
+calcModule.factory('serviceCalcDigits', function() {
+	return{
+		modelDigit : {
+			digits: [
+				{ dig: "1"}, { dig: "2"}, { dig: "3"},
+				{ dig: "4"}, { dig: "5"}, { dig: "6"},
+				{ dig: "7"}, { dig: "8"}, { dig: "9"},
+			]
+		}
+	};
+});
+/*___________________________________________________________________*/
+
 // --- Create AngularJS "controller" for calc module.
-calcModule.controller("CalcCtrl", function ($scope, CalcService) {
+calcModule.controller("CalcCtrl", function ($scope, serviceCalc, serviceCalcVersions, serviceCalcDigits) {
 		
 	// Models of the calculator
-	$scope.modelCalcVersions = modelCalcVersions;
-	$scope.modelDigit        = modelDigit;
+	$scope.modelCalcVersions = serviceCalcVersions.modelCalcVersions;
+	$scope.modelDigit        = serviceCalcDigits.modelDigit;
 
 	// Input data and result of calculation
 	$scope.display = '';
@@ -78,16 +86,16 @@ calcModule.controller("CalcCtrl", function ($scope, CalcService) {
 		
 		// Do the operation
 		if( $scope.op == '+' ) {
-			$scope.prevResult = CalcService.add($scope.prevResult, newArg); 
+			$scope.prevResult = serviceCalc.add($scope.prevResult, newArg); 
 		}
 		else if( $scope.op == '-' ) {
-			$scope.prevResult = CalcService.subtract($scope.prevResult, newArg);
+			$scope.prevResult = serviceCalc.subtract($scope.prevResult, newArg);
 		} 
 		else if( $scope.op == '/' ) {
-			$scope.prevResult = CalcService.divide($scope.prevResult, newArg);
+			$scope.prevResult = serviceCalc.divide($scope.prevResult, newArg);
 		}
 		else if( $scope.op == '*' ) {
-			$scope.prevResult = CalcService.multiply($scope.prevResult, newArg);
+			$scope.prevResult = serviceCalc.multiply($scope.prevResult, newArg);
 		}
 		else if( $scope.op == '=' ) {
 			$scope.prevResult = newArg;
@@ -115,7 +123,7 @@ calcModule.controller("CalcCtrl", function ($scope, CalcService) {
 });
 /*___________________________________________________________________*/
 
-calcModule.service('CalcService', function(){
+calcModule.service('serviceCalc', function(){
 
 	this.add = function(a, b){
 		return a + b;
