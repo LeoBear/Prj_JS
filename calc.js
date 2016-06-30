@@ -1,4 +1,12 @@
 
+/*_____________________________________________________________________
+calc.js :
+ - additional models;
+ - module of calculator;
+ - controller of calculator;
+ - service;
+_____________________________________________________________________*/
+
 // --- Create model of calc metadata.
 var modelCalcVersions = {
 	user: "Home&Student",
@@ -9,6 +17,7 @@ var modelCalcVersions = {
 		{ name: "/", operation: "'/'", method: "doOperation('/')" }
 	]
 };
+/*___________________________________________________________________*/
 
 // --- Create model of numbers.
 var modelDigit = {
@@ -18,14 +27,14 @@ var modelDigit = {
 		{ dig: "7"}, { dig: "8"}, { dig: "9"},
 	]
 };
-
-/*-------------------------------------------------------------------*/
+/*___________________________________________________________________*/
 
 // --- Create AngularJS "module" for calc.
 var calcModule = angular.module("calcApp", []);
+/*___________________________________________________________________*/
 
 // --- Create AngularJS "controller" for calc module.
-calcModule.controller("CalcCtrl", function ($scope) {
+calcModule.controller("CalcCtrl", function ($scope, CalcService) {
 		
 	// Models of the calculator
 	$scope.modelCalcVersions = modelCalcVersions;
@@ -38,7 +47,7 @@ calcModule.controller("CalcCtrl", function ($scope) {
         obj._index = idx;
 		var rest = !(obj._index % 3 );
         return rest;
-    }
+	}
 	
 	// Should we append digits to the display?  It depends on whether
 	// we've just hit an operation button or a number button.  This
@@ -69,16 +78,16 @@ calcModule.controller("CalcCtrl", function ($scope) {
 		
 		// Do the operation
 		if( $scope.op == '+' ) {
-			$scope.prevResult = $scope.prevResult + newArg;
+			$scope.prevResult = CalcService.add($scope.prevResult, newArg); 
 		}
 		else if( $scope.op == '-' ) {
-			$scope.prevResult = $scope.prevResult - newArg;
+			$scope.prevResult = CalcService.subtract($scope.prevResult, newArg);
 		} 
 		else if( $scope.op == '/' ) {
-			$scope.prevResult = $scope.prevResult / newArg;
+			$scope.prevResult = CalcService.divide($scope.prevResult, newArg);
 		}
 		else if( $scope.op == '*' ) {
-			$scope.prevResult = $scope.prevResult * newArg;
+			$scope.prevResult = CalcService.multiply($scope.prevResult, newArg);
 		}
 		else if( $scope.op == '=' ) {
 			$scope.prevResult = newArg;
@@ -104,4 +113,24 @@ calcModule.controller("CalcCtrl", function ($scope) {
 		}
 	}	
 });
+/*___________________________________________________________________*/
 
+calcModule.service('CalcService', function(){
+
+	this.add = function(a, b){
+		return a + b;
+	};
+    
+	this.subtract = function(a, b){
+		return a - b;
+	};
+    
+	this.multiply = function(a, b){
+		return a * b;
+	};
+    
+	this.divide = function(a, b){
+		return a / b;
+	};
+});
+/*___________________________________________________________________*/

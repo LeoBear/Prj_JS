@@ -53,9 +53,10 @@
 						<button ng-click="doOperation('-')">-</button>
 						<button ng-click="doOperation('*')">*</button>
 						<button ng-click="doOperation('/')">/</button>
-<!--
-						<button ng-repeat="i in modelCalcVersions.operations" ng-click="doOperation(i)">{{i.name}}</button>
+<!-- 
+						<button ng-repeat="i in modelCalcVersions.operations" ng-click="doOperation('i.name')">{{i.name}}</button>
  -->
+
 <!--
 						<span ng-repeat="i in modelCalcVersions.operations">
 							<button ng-click="{{i.method}}">{{i.name}}</button>
