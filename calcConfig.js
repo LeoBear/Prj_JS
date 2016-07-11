@@ -77,5 +77,9 @@ calcApplication.service('serviceCalcLog', function() {
 	this.get = function() {
 		return self.logLines.length;
 	}
+	
+	this.reset = function() {
+		return self.logLines.length = 0;
+	}
 });
 /*________________________________________________________________________*/

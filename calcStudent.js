@@ -75,6 +75,7 @@ calcApplication.controller("studentCalcController", function ($scope,
 	$scope.clearDisplay = function() {
 
 		serviceCalcClickCounter.insertClick();
+		serviceCalcLog.reset();
 
 		$scope.display = '';
 		$scope.prevResult = '';
