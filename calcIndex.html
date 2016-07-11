@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html lang="en" ng-app="calcApplication">
+	<head>
+		<meta charset="utf-8" />
+		<title>Calc...</title>
+
+		<link rel='StyleSheet' type='text/css' href='calc.css' /> 
+
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.min.js"></script>
+
+		<script language="javascript" src='calcConfig.js' > </script>
+		<script language="javascript" src='calcStudent.js' > </script>
+		<script language="javascript" src='calcAdvanced.js' > </script>
+
+	</head>
+	
+	<body>
+		<center>
+		<dir class='container'>
+			<a href="#/student">Student</a>
+			<a href="#/advanced">Advanced</a>
+			<div ng-view>
+		</dir>
+		</center>
+	</body>
+</html>
+

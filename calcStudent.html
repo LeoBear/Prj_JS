@@ -1,0 +1,58 @@
+		
+<div ng-app="calcApplication" ng-controller="studentCalcController">
+	<table>
+		<tr>
+			<td>
+				version: {{modelCalcVersions.user}}; <br>
+				operations: {{modelCalcVersions.operations.length}}
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<center>
+				<input type="text" readonly ng-model="display" />
+			</center>
+			</td>
+		</tr>
+		<tr ng-repeat="digit in modelDigit.digits | filter:getFiltered">
+			<td>
+			<center>
+				<button ng-click="setDigit(digit.dig)">{{digit.dig}}</button>
+				<button ng-click="setDigit(modelDigit.digits[digit._index+1].dig)">{{modelDigit.digits[digit._index+1].dig}}</button>
+				<button ng-click="setDigit(modelDigit.digits[digit._index+2].dig)">{{modelDigit.digits[digit._index+2].dig}}</button>
+			</center>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<center>
+				<button ng-click="setDigit('0')">0</button>
+				<button ng-click="clearDisplay()">C</button>
+				<button ng-click="doOperation('=')">=</button>
+			</center>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<center>
+				<button ng-click="doOperation('+')">+</button>
+				<button ng-click="doOperation('-')">-</button>
+				<button ng-click="doOperation('*')">*</button>
+				<button ng-click="doOperation('/')">/</button>
+<!-- 
+				<button ng-repeat="i in modelCalcVersions.operations" ng-click="doOperation('i.name')">{{i.name}}</button>
+ -->
+
+<!--
+				<span ng-repeat="i in modelCalcVersions.operations">
+					<button ng-click="{{i.method}}">{{i.name}}</button>
+				</span>
+ -->
+<!--
+				<button ng-repeat="i in modelCalcVersions.operations" ng-click="{{i.method}}">{{i.name}}</button>
+ -->
+			</center>
+			</td>
+		</tr>
+	</table>
+</div> 
