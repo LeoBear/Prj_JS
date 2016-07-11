@@ -1,6 +1,6 @@
 
 // --- Create model of calc metadata.
-calcApplication.factory('serviceCalcAdvancedOperation', function() {
+calcApplication.factory('serviceCalcAdvancedModel', function() {
 	return{
 		modelCalcVersions : {
 			user: "Advanced",
@@ -19,7 +19,7 @@ calcApplication.factory('serviceCalcAdvancedOperation', function() {
 /*___________________________________________________________________*/
 
 // --- Create service with operations.
-calcApplication.service('serviceCalc', function(){
+calcApplication.service('serviceCalcAdvancedOperations', function(){
 
 	this.add = function(a, b){
 		return a + b;
@@ -53,14 +53,14 @@ calcApplication.service('serviceCalc', function(){
 
 // --- Create AngularJS "controller" for calc module.
 calcApplication.controller("advancedCalcController", function ($scope,
-																serviceCalc,
 																serviceCalcLog,
 																serviceCalcDigits,
 																serviceCalcClickCounter,
-																serviceCalcAdvancedOperation) {
+																serviceCalcAdvancedModel,
+																serviceCalcAdvancedOperations ) {
 		
 	// Models of the calculator
-	$scope.modelCalcVersions = serviceCalcAdvancedOperation.modelCalcVersions;
+	$scope.modelCalcVersions = serviceCalcAdvancedModel.modelCalcVersions;
 	$scope.modelDigit        = serviceCalcDigits.modelDigit;
 
 	$scope.logLines          = serviceCalcLog.logLines;
@@ -109,25 +109,25 @@ calcApplication.controller("advancedCalcController", function ($scope,
 		
 		// Do the operation
 		if( $scope.op == '+' ) {
-			$scope.prevResult = serviceCalc.add($scope.prevResult, newArg); 
+			$scope.prevResult = serviceCalcAdvancedOperations.add($scope.prevResult, newArg); 
 		}
 		else if( $scope.op == '-' ) {
-			$scope.prevResult = serviceCalc.subtract($scope.prevResult, newArg);
+			$scope.prevResult = serviceCalcAdvancedOperations.subtract($scope.prevResult, newArg);
 		} 
 		else if( $scope.op == '/' ) {
-			$scope.prevResult = serviceCalc.divide($scope.prevResult, newArg);
+			$scope.prevResult = serviceCalcAdvancedOperations.divide($scope.prevResult, newArg);
 		}
 		else if( $scope.op == '*' ) {
-			$scope.prevResult = serviceCalc.multiply($scope.prevResult, newArg);
+			$scope.prevResult = serviceCalcAdvancedOperations.multiply($scope.prevResult, newArg);
 		}
 		else if( $scope.op == 'sin' ) {
-			$scope.prevResult = serviceCalc.sin($scope.prevResult, newArg);
+			$scope.prevResult = serviceCalcAdvancedOperations.sin($scope.prevResult, newArg);
 		}
 		else if( $scope.op == 'cos' ) {
-			$scope.prevResult = serviceCalc.cos($scope.prevResult, newArg);
+			$scope.prevResult = serviceCalcAdvancedOperations.cos($scope.prevResult, newArg);
 		}
 		else if( $scope.op == 'tg' ) {
-			$scope.prevResult = serviceCalc.tg($scope.prevResult, newArg);
+			$scope.prevResult = serviceCalcAdvancedOperations.tg($scope.prevResult, newArg);
 		}
 		else if( $scope.op == '=' ) {
 			$scope.prevResult = newArg;

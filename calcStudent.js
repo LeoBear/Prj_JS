@@ -1,6 +1,6 @@
 
 // --- Create model of calc metadata.
-calcApplication.factory('serviceCalcStudentOperation', function() {
+calcApplication.factory('serviceCalcStudentModel', function() {
 	return{
 		modelCalcVersions : {
 			user: "Home&Student",
@@ -16,7 +16,7 @@ calcApplication.factory('serviceCalcStudentOperation', function() {
 /*___________________________________________________________________*/
 
 // --- Create service with operations.
-calcApplication.service('serviceCalc', function(){
+calcApplication.service('serviceCalcStudentOperations', function(){
 
 	this.add = function(a, b){
 		return a + b;
@@ -38,14 +38,14 @@ calcApplication.service('serviceCalc', function(){
 
 // --- Create AngularJS "controller" for calc module.
 calcApplication.controller("studentCalcController", function ($scope,
-																serviceCalc,
 																serviceCalcLog,
 																serviceCalcDigits,
 																serviceCalcClickCounter,
-																serviceCalcStudentOperation ) {
+																serviceCalcStudentModel,
+																serviceCalcStudentOperations ) {
 		
 	// Models of the calculator
-	$scope.modelCalcVersions = serviceCalcStudentOperation.modelCalcVersions;
+	$scope.modelCalcVersions = serviceCalcStudentModel.modelCalcVersions;
 	$scope.modelDigit        = serviceCalcDigits.modelDigit;
 
 	$scope.logLines          = serviceCalcLog.logLines;
@@ -94,16 +94,16 @@ calcApplication.controller("studentCalcController", function ($scope,
 		
 		// Do the operation
 		if( $scope.op == '+' ) {
-			$scope.prevResult = serviceCalc.add($scope.prevResult, newArg); 
+			$scope.prevResult = serviceCalcStudentOperations.add($scope.prevResult, newArg); 
 		}
 		else if( $scope.op == '-' ) {
-			$scope.prevResult = serviceCalc.subtract($scope.prevResult, newArg);
+			$scope.prevResult = serviceCalcStudentOperations.subtract($scope.prevResult, newArg);
 		} 
 		else if( $scope.op == '/' ) {
-			$scope.prevResult = serviceCalc.divide($scope.prevResult, newArg);
+			$scope.prevResult = serviceCalcStudentOperations.divide($scope.prevResult, newArg);
 		}
 		else if( $scope.op == '*' ) {
-			$scope.prevResult = serviceCalc.multiply($scope.prevResult, newArg);
+			$scope.prevResult = serviceCalcStudentOperations.multiply($scope.prevResult, newArg);
 		}
 		else if( $scope.op == '=' ) {
 			$scope.prevResult = newArg;
