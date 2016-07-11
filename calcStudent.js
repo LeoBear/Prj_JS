@@ -37,11 +37,18 @@ calcApplication.service('serviceCalc', function(){
 /*___________________________________________________________________*/
 
 // --- Create AngularJS "controller" for calc module.
-calcApplication.controller("studentCalcController", function ($scope, serviceCalc, serviceCalcStudentOperation, serviceCalcDigits) {
+calcApplication.controller("studentCalcController", function ($scope,
+																serviceCalc,
+																serviceCalcLog,
+																serviceCalcDigits,
+																serviceCalcClickCounter,
+																serviceCalcStudentOperation ) {
 		
 	// Models of the calculator
 	$scope.modelCalcVersions = serviceCalcStudentOperation.modelCalcVersions;
 	$scope.modelDigit        = serviceCalcDigits.modelDigit;
+
+	$scope.logLines          = serviceCalcLog.logLines;
 
 	// Input data and result of calculation
 	$scope.display = '';
@@ -66,6 +73,9 @@ calcApplication.controller("studentCalcController", function ($scope, serviceCal
 	$scope.op = "=";
 	
 	$scope.clearDisplay = function() {
+
+		serviceCalcClickCounter.insertClick();
+
 		$scope.display = '';
 		$scope.prevResult = '';
 		$scope.appendDigits = false;
@@ -76,6 +86,8 @@ calcApplication.controller("studentCalcController", function ($scope, serviceCal
 	//   2 + 4 - 2, when the "-" is clicked, the "+" should be executed).
 	$scope.doOperation = function( newOperation )
 	{
+		serviceCalcClickCounter.insertClick();
+
 		// Get the argument
 		var newArg = eval( $scope.display );
 		
@@ -107,6 +119,9 @@ calcApplication.controller("studentCalcController", function ($scope, serviceCal
 	// --- Reacts to the user typing a digit --- //
 	$scope.setDigit = function ( dig )
 	{
+		serviceCalcClickCounter.insertClick();
+		serviceCalcLog.add(dig);
+		
 		if( $scope.appendDigits ) {
 			$scope.display += dig;
 		}

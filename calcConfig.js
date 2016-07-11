@@ -17,7 +17,17 @@ calcApplication.config(function($routeProvider){
 			controller: 'studentCalcController'
 		})
 
+		.when('/student/:number', {
+			templateUrl: 'calcStudent.html',
+			controller: 'studentCalcController'
+		})
+
 		.when('/advanced/', {
+			templateUrl: 'calcAdvanced.html',
+			controller: 'advancedCalcController'
+		})
+
+		.when('/advanced/:number', {
 			templateUrl: 'calcAdvanced.html',
 			controller: 'advancedCalcController'
 		})
@@ -38,3 +48,34 @@ calcApplication.factory('serviceCalcDigits', function() {
 });
 /*________________________________________________________________________*/
 
+calcApplication.service('serviceCalcClickCounter', function() {
+	
+	var self = this;
+	
+	this.clickCounter = 0;
+	
+	this.insertClick = function() {
+		self.clickCounter++;
+	}
+	
+	this.getClickCounter = function() {
+		return self.clickCounter;
+	}	
+});
+/*________________________________________________________________________*/
+
+calcApplication.service('serviceCalcLog', function() {
+
+	var self = this;
+	
+	this.logLines = [];
+	
+	this.add = function(symbol) {
+		self.logLines.push(symbol);
+	}
+	
+	this.get = function() {
+		return self.logLines.length;
+	}
+});
+/*________________________________________________________________________*/
